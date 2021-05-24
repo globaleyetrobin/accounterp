@@ -32,24 +32,11 @@ Thats it... Run the command `php artisan serve` and cheers, you are good to go w
 *Make sure you have run the command `php artisan db:seed --class UserTableSeeder` before you use these credentials.*
 
 User:admin@admin.com
-Password:1234
+Password:Eyet@2021
 
 
 
 
-## ScreenShots
-
-## User Managemnt
-![Screenshot](screenshots/GlobalEyeT- ERP_Screen.png)
-
-## Product Mangement
-![Screenshot](screenshots/GlobalEyeT- ERP_Screen1.png)
-
-## Purchage Management
-![Screenshot](screenshots/GlobalEyeT- ERP_Screen2.png)
-
-## Issues
-If you come across any issues please report them [here](https://github.com/globaleyetrobin/accounting/issues).
 
 ## Contribution
 Feel free to create any pull requests for the project. For proposing any new changes or features you want to add to the project, you can send us an email at following addresses.
