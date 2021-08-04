@@ -86,9 +86,61 @@ class EmployeesController extends Controller
 		
 		
 		
+		
+		
+		$salary =  \DB::table('salary')->where('employee_id',$request->id)->first();
+		
+		
+		if($salary)
+		{
+		$salary_allowances =  \DB::table('salary_allowances')->where('salary_id',$salary->id)->get();
+		
+		$salary_allowancedata=array();
+		foreach($salary_allowances as $salary_allowance)
+		{
+			
+			
+			$salary_allowancedata[$salary_allowance->allowance_id]=$salary_allowance->amount;
+			
+		}
+		
+	
+		$salary_deductions =  \DB::table('salary_deductions')->where('salary_id',$salary->id)->get();
+		
+		$salary_deductiondata=array();
+		foreach($salary_deductions as $salary_deduction)
+		{
+			
+			
+			$salary_deductiondata[$salary_deduction->deduction_id]=$salary_deduction->amount;
+			
+		}
+		
+		
+		}
+		else
+		{
+			$salary_allowancedata = '';
+			$salary_deductiondata ='';
+		}
+		
+		
+		
+		
+
+		
+		
 
         return view('backend.employees.salary', ['allowances' => $allowances,
 		'deductions' => $deductions,
+		
+		'salary' => $salary,
+		
+		'salary_allowances' => $salary_allowancedata,
+		
+		'salary_deductions' => $salary_deductiondata,
+		
+		
 		'employee_id' => $employee_id,
 		'employee' => $employee_details
 		]);
@@ -114,6 +166,76 @@ class EmployeesController extends Controller
 		
 		$deduction=$request->deduction;
 		
+		$salary_id=$request->salary_id;
+		
+		if($salary_id !='')
+		{
+			Salary::where('id', $salary_id)
+       ->update([
+           'basic_salary' => $basic_salary,
+		   'total_allowance' => $total_allowance,
+		   'total_deduction' => $total_deduction,
+		   'net_salary' => $net_salary
+        ]);
+		
+		
+		
+		//DB::table('salary_allowances')->where('salary_id', $salary_id)->delete();
+
+       // DB::table('salary_deductions')->where('salary_id', $salary_id)->delete();
+	   
+	   /*$check_allowance=Salaryallowance::where('salary_id',$salary_id)->get();
+	   
+	   $check_deduction=Salarydeduction::where('salary_id',$salary_id)->get();
+	   
+	  
+	   if(count($check_allowance) !=0)
+	   {
+	   Salaryallowance::where('salary_id',$salary_id)->delete();
+	   }
+	   
+	   if(count($check_deduction) !=0)
+	   {
+		   exit;
+	   Salarydeduction::where('salary_id',$salary_id)->delete();
+	   }
+	   */
+
+
+
+        	foreach($allowance as $key => $value)
+		{
+                 
+		
+        Salaryallowance::where('salary_id', $salary_id)->where('allowance_id', $key)
+       ->update([
+           'amount' => $value
+        ]);
+		
+		
+          
+        }
+		
+		foreach($deduction as $key => $value)
+		{
+               
+	     Salarydeduction::where('salary_id', $salary_id)->where('deduction_id', $key)
+       ->update([
+           'amount' => $value
+        ]);
+
+		
+		
+		
+          
+        }
+
+		return new RedirectResponse(route('admin.employees.index'), ['flash_success' => __('employee salary Updated Sucessfully')]);
+		
+		}
+		
+		else
+		{
 	
 		
 		
@@ -128,6 +250,9 @@ class EmployeesController extends Controller
 		$salary->created_by = $userid;
 		
         $salary_id=$salary->save();
+		
+		
+		
 			   
 		
 		
@@ -171,6 +296,8 @@ class EmployeesController extends Controller
 		
 		
 		return new RedirectResponse(route('admin.employees.index'), ['flash_success' => __('employee salary created')]);
+		}
+		
         //return new ViewResponse('backend.employees.index');
 		
 		

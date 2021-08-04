@@ -54,7 +54,7 @@
                 
                    <div class="col-md-12">
 				<label for="name" class=" from-control-label required">Basic Salary</label>
-                    <input class="form-control" placeholder="Basic Salary" required="required" name="basic_salary" type="text" id="basic_salary">
+                    <input class="form-control" placeholder="Basic Salary" required="required" name="basic_salary" value="<?php echo @$salary->basic_salary?>" type="text" id="basic_salary">
                 </div><!--col-->
 				
 			 </div>
@@ -82,7 +82,7 @@
 							 ?>
 							</label>
                           <input class="form-control allowance" placeholder="<?php echo $allowance->name ;?>"  
-							 name="allowance[<?php echo $allowance->id ;?>]" type="text" id="allowance<?php echo $allowance_count?>">
+							 name="allowance[<?php echo $allowance->id ;?>]"  value="<?php echo @$salary_allowances[$allowance->id]?>" type="text" id="allowance<?php echo $allowance_count?>">
                      </div><!--col-->
 						<?php
 						
@@ -120,7 +120,7 @@
 							 ?>
 							</label>
                           <input class="form-control deduction" placeholder="<?php echo $deduction->name ;?>"  
-							 name="deduction[<?php echo $deduction->id ;?>]" type="text" id="deduction<?php echo $deduction_count ;?>">
+							 name="deduction[<?php echo $deduction->id ;?>]"  value="<?php echo @$salary_deductions[$deduction->id]?>" type="text" id="deduction<?php echo $deduction_count ;?>">
                      </div><!--col-->
 						<?php
 						
@@ -143,13 +143,13 @@
 				
 				<div class="col-md-3">
 				<label for="name" class=" from-control-label required">Total Allowance</label>
-                    <input class="form-control" placeholder="Allowance" required="required" name="total_allowance" type="text" id="total_allowance">
+                    <input class="form-control" placeholder="Allowance" required="required"  value="<?php echo @$salary->total_allowance?>" name="total_allowance" type="text" id="total_allowance">
 					
                 </div><!--col-->
 				
 				<div class="col-md-3">
 				<label for="name" class=" from-control-label required">Total Deduction</label>
-                    <input class="form-control" placeholder="Deduction" required="required" name="total_deduction" type="text" id="total_deduction">
+                    <input class="form-control" placeholder="Deduction" required="required" value="<?php echo @$salary->total_deduction?>" name="total_deduction" type="text" id="total_deduction">
 					
                 </div><!--col-->
 				
@@ -157,8 +157,9 @@
                 
                 <div class="col-md-3">
 				<label for="name" class=" from-control-label required">Net Salary</label>
-                    <input class="form-control" placeholder="Net Salary" required="required" name="net_salary" type="text" id="net_salary">
+                    <input class="form-control" placeholder="Net Salary" required="required" value="<?php echo @$salary->net_salary?>" name="net_salary" type="text" id="net_salary">
                 </div><!--col-->
+				<input type="hidden" name="salary_id" value="<?php echo @$salary->id?>">
 				
 			 </div>
 			 </div>
