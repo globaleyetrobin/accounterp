@@ -387,6 +387,132 @@ return [
                 ],
             ],
 			
+				'accountcategory' => [
+                'all' => 'All  Account Categories',
+                'active' => 'Account category List',
+                'create' => 'Create Account category',
+                'deactivated' => 'Deactivated Account category',
+                'deleted' => 'Deleted Account category',
+                'edit' => 'Edit Account category',
+                'management' => 'Account category',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => 'Account Category ',
+					'parentaccountcategory' => 'Category',
+                    'category' => 'Categories',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => 'Account cateories total| Account categories total',
+                ],
+            ],
+
+
+              'accountsubcategory' => [
+                'all' => 'All  Account SubCategories',
+                'active' => 'Account subcategory List',
+                'create' => 'Create Account subcategory',
+                'deactivated' => 'Deactivated Account subcategory',
+                'deleted' => 'Deleted Account subcategory',
+                'edit' => 'Edit Account subcategory',
+                'management' => 'Account subcategory',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => 'Account Subcategory ',
+                    'parentaccountcategory' => 'Subcategory',
+                    'category' => 'Subcategories',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => 'Account cateories total| Account categories total',
+                ],
+            ],
+
+
+            'expensecategory' => [
+                'all' => 'All  Expense Categories',
+                'active' => 'Expense Category List',
+                'create' => 'Create Expense Category',
+                'deactivated' => 'Deactivated Expense Category',
+                'deleted' => 'Deleted Expense Category',
+                'edit' => 'Edit ExpenseCategory',
+                'management' => 'Expense Categories',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => 'Expense Category Name',
+                    'parentcategory' => 'Parent ExpenseCategory',
+                    'category' => 'Expense Categories',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => 'cateories total|categories total',
+                ],
+            ],
+
+
+
+            'expense' => [
+                'all' => 'All  Expense ',
+                'active' => 'Expense  List',
+                'create' => 'Create Expense ',
+                'deactivated' => 'Deactivated Expense ',
+                'deleted' => 'Deleted Expense ',
+                'edit' => 'Edit Expense',
+                'management' => 'Expense ',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => 'Expense Name',
+                    'amount' => 'Amount',
+                    'date' => 'Date',
+                    'parentcategory' => 'Category',
+                    'category' => 'Categories',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => 'cateories total|categories total',
+                ],
+            ],
+			
+		  'journels' => [
+                'all' => 'All  Journal ',
+                'active' => 'Journal   List',
+                'create' => 'Create Journal  ',
+                'deactivated' => 'Deactivated Journal  ',
+                'deleted' => 'Deleted Journal  ',
+                'edit' => 'Edit Journal ',
+                'management' => 'Journal  ',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => 'Name',
+                    'amount' => 'Amount',
+					'type' => 'Account Type',
+					'asset_category' => 'Account Category',
+                    'date' => 'Date',
+                    'parentcategory' => 'Category',
+                    'category' => 'Categories',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => 'cateories total|categories total',
+                ],
+            ],
+            
+			
 			
 			'brand' => [
                 'all' => 'All  Brands',
@@ -773,6 +899,31 @@ return [
                     'createdby' => 'Created By',
                     'createdat' => 'Created At',
                     'total' => 'Sale total|Sale total',
+                ],
+            ],
+			
+			
+			
+			'accounttype' => [
+                'all' => 'All  Account Type',
+                'active' => ' Account Type List',
+                'create' => 'Create  Account Type',
+                'deactivated' => 'Deactivated  Account Type',
+                'deleted' => 'Deleted  Account Type',
+                'edit' => 'Edit  Account Type',
+                'management' => ' Account Types',
+
+                'table' => [
+                    'created' => 'Created',
+                    'id' => 'ID',
+                    'last_updated' => 'Last Updated',
+                    'name' => ' Account Type Name',
+					'parentcategory' => 'Parent Category',
+                    'accounttype' => ' Account Types',
+                    'status' => 'Status',
+                    'createdby' => 'Created By',
+                    'createdat' => 'Created At',
+                    'total' => ' Account Type total|categories total',
                 ],
             ],
 			

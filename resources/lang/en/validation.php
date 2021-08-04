@@ -261,13 +261,73 @@ return [
                     'status' => 'Status',
 					'parentcategory' => 'Parent Category'
                 ],
+                
 				
+				 'accounttypes' => [
+                    'name' => 'Account Type ',
+                    'status' => 'Status',
+					'parentcategory' => 'Parent Category'
+                ],
+				 
 				
 				'subcategories' => [
                     'name' => 'Sub Category Name',
                     'status' => 'Status',
 					'parentsubcategory' => ' Category'
                 ],
+				
+				'accountcategories' => [
+                    'name' => 'Account Category ',
+                    'status' => 'Status',
+					'account_type'=> 'Credit/Debit',
+					'parentaccountcategory' => ' Category'
+                ],
+
+                'accountsubcategories' => [
+                    'name' => 'Account Subcategory ',
+                    'status' => 'Status',
+                    'account_type'=> 'Account Type',
+                    'parentaccountcategory' => ' Category',
+                    'parentaccountsubcategory' => ' Category'
+                ],
+
+
+                'expensecategories' => [
+                    'name' => 'Expense Category ',
+                    'status' => 'Status',
+                    'parentexpensecategory' => ' Category'
+                ],
+
+                 'expenses' => [
+                    'name' => 'Expense Name ',
+                    'amount' => 'Amount',
+					
+                    'date' => 'Date',
+                    'status' => 'Status',
+                    'parentexpense' => ' Category'
+                ],
+				
+				  'assets' => [
+                    'name' => ' Name ',
+                    'amount' => 'Amount',
+                    'date' => 'Date',
+					'asset_category' => 'Asset Category',
+					'type' => 'Account Type',
+                    'status' => 'Status',
+                    'parentexpense' => ' Category'
+                ],
+
+                'journels' => [
+                    'name' => ' Name ',
+                    'amount' => 'Amount',
+                    'date' => 'Date',
+                    'journel_category' => 'Asset Category',
+                    'type' => 'Account Type',
+					'remarks' => 'Remarks',
+                    'status' => 'Status',
+                    'parentexpense' => ' Category'
+                ],
+
 				
 				 'brands' => [
                     'name' => 'Brand Name',

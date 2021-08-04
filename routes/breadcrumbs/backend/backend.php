@@ -19,8 +19,20 @@ require __DIR__.'/companies/companies.php';
 
 require __DIR__.'/branches/branches.php';
 
+require __DIR__.'/accounttypes/accounttypes.php';
+
+require __DIR__.'/accountcategories/accountcategories.php';
+
+require __DIR__.'/accountsubcategories/accountsubcategories.php';
+
+require __DIR__.'/journels/journels.php';
+
 
 require __DIR__.'/categories/categories.php';
+
+require __DIR__.'/expensecategories/expensecategories.php';
+
+require __DIR__.'/expenses/expenses.php';
 
 require __DIR__.'/subcategories/subcategories.php';
 

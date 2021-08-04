@@ -229,6 +229,9 @@
                                 @lang('menus.backend.sidebar.suppliers')
                             </a>
                        </li>
+					   
+					   
+					
 
 
                        
@@ -239,6 +242,114 @@
 				
 				
 				<li class="divider"></li>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+                <li class="nav-item nav-dropdown {{
+                    active_class(Route::is('admin/auth*'), 'open')
+                }}">
+                    <a class="nav-link nav-dropdown-toggle {{
+                        active_class(Route::is('admin/auth*'))
+                    }}" href="#">
+                        <i class="nav-icon far fa-user"></i>
+                        @lang('menus.backend.access.account')
+
+                        @if ($pending_approval > 0)
+                            <span class="badge badge-danger">{{ $pending_approval }}</span>
+                        @endif
+                    </a>
+
+                    <ul class="nav-dropdown-items">
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/accounttype/accounttype*'))
+                            }}" href="{{ route('admin.accounttypes.index') }}">
+                                @lang('labels.backend.access.accounttype.management')
+
+                              
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/accountcategory/accountcategory*'))
+                            }}" href="{{ route('admin.accountcategories.index') }}">
+                                @lang('labels.backend.access.accountcategory.management')
+                            </a>
+                        </li>
+
+
+                         <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/accountsubcategory/accountsubcategory*'))
+                            }}" href="{{ route('admin.accountsubcategories.index') }}">
+                                @lang('labels.backend.access.accountsubcategory.management')
+                            </a>
+                        </li>
+
+
+                         <li class="nav-item">
+                            <a class="nav-link {{
+                                active_class(Route::is('admin/journel/journel*'))
+                            }}" href="{{ route('admin.journels.index') }}">
+                                Journel
+                            </a>
+                        </li>
+
+                   
+						
+						
+						<li class="nav-item">
+                            <a class="nav-link" href="{{ url('/admin/ledger')}}">
+                                Ledger
+                            </a>
+                        </li>
+						
+						
+						
+						<li class="nav-item">
+                            <a class="nav-link {{
+                            active_class(Route::is('admin/expensecategory/expensecategories*'))
+                        }}" href="{{ route('admin.expensecategories.index') }}">
+                                @lang('labels.backend.access.expensecategory.management')
+                            </a>
+                        </li>
+						
+						<li class="nav-item">
+                            <a class="nav-link {{
+                            active_class(Route::is('admin/expense/expenses*'))
+                        }}" href="{{ route('admin.expenses.index') }}">
+                                @lang('labels.backend.access.expense.management')
+                            </a>
+                        </li>
+						
+						
+						
+						
+					
+						
+						
+						
+						
+                    </ul>
+                </li>
+
+                <li class="divider"></li>
+				
 
                <!-- <li class="nav-item">
                     <a class="nav-link {{

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2021 at 12:38 PM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.3.27
+-- Generation Time: Aug 02, 2021 at 06:16 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 7.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,8 +18,91 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `eyet_account`
+-- Database: `account_erp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `accounttypes`
+--
+
+CREATE TABLE `accounttypes` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` int(12) DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `accounttypes`
+--
+
+INSERT INTO `accounttypes` (`id`, `name`, `parent_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Assets', NULL, 1, 1, NULL, '2021-06-10 05:30:19', '2021-06-10 05:30:19', NULL),
+(2, 'Liability', NULL, 1, 1, NULL, '2021-06-10 05:30:38', '2021-06-10 05:30:38', NULL),
+(3, 'eyet global', NULL, 1, 1, NULL, '2021-07-20 23:57:27', '2021-07-20 23:57:27', NULL),
+(4, 'Income', NULL, 1, 1, NULL, '2021-07-21 00:02:11', '2021-07-21 00:02:11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_categories`
+--
+
+CREATE TABLE `account_categories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(12) DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `account_categories`
+--
+
+INSERT INTO `account_categories` (`id`, `name`, `account_type`, `parent_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Fixed Asset', 'debit', 1, 1, 1, 1, '2021-07-18 23:40:58', '2021-07-19 06:48:23', NULL),
+(2, 'Current Assets', 'credit', 1, 1, 1, NULL, '2021-07-19 10:41:24', '2021-07-19 10:41:24', NULL),
+(3, 'indirect income', 'credit', 4, 1, 1, NULL, '2021-07-21 00:11:55', '2021-07-21 00:11:55', NULL),
+(4, 'Direct income', NULL, 4, 1, 1, NULL, '2021-08-02 06:39:41', '2021-08-02 06:39:41', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `account_subcategories`
+--
+
+CREATE TABLE `account_subcategories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `account_type` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(12) DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `account_subcategories`
+--
+
+INSERT INTO `account_subcategories` (`id`, `name`, `account_type`, `parent_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Office Lands', '1', 1, 1, 1, 1, '2021-08-02 06:28:09', '2021-08-02 06:36:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -542,6 +625,62 @@ INSERT INTO `employees` (`id`, `name`, `company_id`, `email`, `phoneno`, `addres
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `expensecategories`
+--
+
+CREATE TABLE `expensecategories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parent_id` int(12) DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expensecategories`
+--
+
+INSERT INTO `expensecategories` (`id`, `name`, `parent_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Wages', NULL, 1, 1, NULL, '2021-07-19 01:21:32', '2021-07-19 01:21:32', NULL),
+(2, 'Tea & Coffe', NULL, 1, 1, NULL, '2021-07-19 10:43:11', '2021-07-19 10:43:11', NULL),
+(3, 'salary', NULL, 1, 1, NULL, '2021-07-21 00:33:49', '2021-07-21 00:33:49', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` int(12) DEFAULT 0,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `expenses`
+--
+
+INSERT INTO `expenses` (`id`, `name`, `amount`, `date`, `parent_id`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Robin Salary', '1000', '2021-07-16', 1, 1, 1, 1, '2021-07-19 05:12:31', '2021-07-19 05:53:36', NULL),
+(2, 'Test edit', '800', '2021-07-20', 1, 1, 1, 1, '2021-07-19 05:38:04', '2021-07-19 05:53:16', NULL),
+(3, 'Coffee Powder', '100', '2021-07-19', 2, 1, 1, NULL, '2021-07-19 10:44:05', '2021-07-19 10:44:05', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -601,6 +740,37 @@ CREATE TABLE `jobs` (
   `available_at` int(10) UNSIGNED NOT NULL,
   `created_at` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `journels`
+--
+
+CREATE TABLE `journels` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `amount` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `date` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `journel_type` int(13) DEFAULT NULL,
+  `journel_category` int(12) DEFAULT 0,
+  `journel_subcategory` int(13) DEFAULT NULL,
+  `journel_entry` varchar(20) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remarks` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `journels`
+--
+
+INSERT INTO `journels` (`id`, `name`, `amount`, `date`, `journel_type`, `journel_category`, `journel_subcategory`, `journel_entry`, `remarks`, `status`, `created_by`, `updated_by`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Journal entry', '5000', '2021-08-02', 1, 1, 1, 'debit', 'Testing', 1, 1, 1, '2021-08-02 09:55:11', '2021-08-02 09:55:51', NULL);
 
 -- --------------------------------------------------------
 
@@ -758,7 +928,14 @@ INSERT INTO `ledgers` (`id`, `user_type`, `user_id`, `recordable_type`, `recorda
 (121, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-05-23 16:32:21\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"M275SyXoiHDR3hL4wFNiYSOmY3Z2w6L6FZr2bsqAOIixfyrZW3a3rsJp3b8l\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-05-23 16:32:22\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/accounterp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'e6dd6392e3e05d5bb117b32f5d846570e9f106c36c6ddc10a3bd5ac0bd4a8f138cf815d5ca3a524b80169773d9b2c88c87b7b273c4a7a2fbb469c300a40e66bf', '2021-05-23 11:02:22', '2021-05-23 11:02:22');
 INSERT INTO `ledgers` (`id`, `user_type`, `user_id`, `recordable_type`, `recordable_id`, `context`, `event`, `properties`, `modified`, `pivot`, `extra`, `url`, `ip_address`, `user_agent`, `signature`, `created_at`, `updated_at`) VALUES
 (122, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-05-23 16:32:21\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"paVOSwC9IsLw66Q6wrrbPPTqONYqfbCgwGBF0y7qtxrLPUoZTAxjbCmU52ua\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-05-23 16:32:22\",\"deleted_at\":null}', '[\"remember_token\"]', '[]', '[]', 'http://localhost/accounterp/public/logout', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', 'cae9f807dac904c15c4d50f11a514da80fea45bdc01a6a65f7bf3993b279f4fce13126e28b809ca5a3b101a2e5c52ccf2cc9ab2db6a3dc35e2f88cac1b3f7a13', '2021-05-23 11:03:32', '2021-05-23 11:03:32'),
-(123, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-05-23 16:33:57\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"paVOSwC9IsLw66Q6wrrbPPTqONYqfbCgwGBF0y7qtxrLPUoZTAxjbCmU52ua\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-05-23 16:33:59\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/accounterp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', '81c316838891fd82d633ca5cc4674dd12de2e46b8a89fbacc5d27a331433943c63c7bb4ce6de7a513b42227032d103cce807610cd8b7cdf3250951898904941c', '2021-05-23 11:03:59', '2021-05-23 11:03:59');
+(123, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-05-23 16:33:57\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"paVOSwC9IsLw66Q6wrrbPPTqONYqfbCgwGBF0y7qtxrLPUoZTAxjbCmU52ua\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-05-23 16:33:59\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/accounterp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.212 Safari/537.36', '81c316838891fd82d633ca5cc4674dd12de2e46b8a89fbacc5d27a331433943c63c7bb4ce6de7a513b42227032d103cce807610cd8b7cdf3250951898904941c', '2021-05-23 11:03:59', '2021-05-23 11:03:59'),
+(124, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-05-23 16:33:57\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"vJAvzrHkDRslEHwxLKhjIpLhrbFMdTFtVtFK8bVeZreZIZ4O6ijfDS4hyMyN\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-05-23 16:33:59\",\"deleted_at\":null}', '[\"remember_token\"]', '[]', '[]', 'http://localhost/accounterp/public/logout', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36', '3c06943d0aa4d4c67a508c85475feeb20107cf631cc813c06071e068b34c03c010ba09b74392bc866c320019c100f236036a2fc84690c27c9137144b86cf7101', '2021-06-05 05:35:50', '2021-06-05 05:35:50'),
+(125, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-06-05 11:07:31\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"vJAvzrHkDRslEHwxLKhjIpLhrbFMdTFtVtFK8bVeZreZIZ4O6ijfDS4hyMyN\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-06-05 11:07:51\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/accounterp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36', '67ab18ca8dc1aa84bef618066da7ec1e7648075ee787b1d1880b90268c87618547484c95b0afac1d8781f8a2fd388b23f137172efe94b6e8577e9b87e53262ad', '2021-06-05 05:37:51', '2021-06-05 05:37:51'),
+(126, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-07-19 04:34:22\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"vJAvzrHkDRslEHwxLKhjIpLhrbFMdTFtVtFK8bVeZreZIZ4O6ijfDS4hyMyN\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-07-19 04:34:23\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/account_erp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36', 'ac1cb321c4136fe32943ed5c46381968c1b2112c46b7a74c804f3e4f9a56e482b1d8609a1b90a4a1a29a02ef31a2673cdd5746f35a842a4c489564c04bbec2bf', '2021-07-18 23:04:24', '2021-07-18 23:04:24'),
+(127, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-08-02 02:06:47\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"vJAvzrHkDRslEHwxLKhjIpLhrbFMdTFtVtFK8bVeZreZIZ4O6ijfDS4hyMyN\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-08-02 02:06:49\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/account_erp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36', 'b0aef644d7fa287ac981e39107385eaa7d7cf1994a65bec9c5167130ea403477c01865dd3f769e28819d5fbc7e4580721596e3979964196c2082c410395ca018', '2021-08-01 20:36:50', '2021-08-01 20:36:50'),
+(128, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-08-02 02:06:47\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"eBrQI7i7tx7YxBdSGCzAnozypbanUZjiwQ9D7y6SEFqanAt3pPDtfWrxeKzI\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-08-02 02:06:49\",\"deleted_at\":null}', '[\"remember_token\"]', '[]', '[]', 'http://localhost/account_erp/public/logout', '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Mobile/15E148 Safari/604.1', '2960d7cbf0b6219226afeee45432e0c2bba852249273825f78f59b185db3042604d4de9184059dc2c672d16751ff5e840ea5c94a6f565159a2910edf77381274', '2021-08-02 02:33:08', '2021-08-02 02:33:08'),
+(129, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-08-02 08:04:04\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"eBrQI7i7tx7YxBdSGCzAnozypbanUZjiwQ9D7y6SEFqanAt3pPDtfWrxeKzI\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-08-02 08:04:05\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/account_erp/public/login', '::1', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1.1 Mobile/15E148 Safari/604.1', 'f68da49376fcfe3c413a9df009f425ee53b9de10f2051ec2876803825a53d527c742773baf9cc415d2d390c25375841ee9e766d44366352ff6aff10e092ce7b2', '2021-08-02 02:34:05', '2021-08-02 02:34:05'),
+(130, 'App\\Models\\Auth\\User', 1, 'App\\Models\\Auth\\User', 1, 4, 'updated', '{\"id\":1,\"uuid\":\"5418d7a1-b5c7-4298-8eaf-38b95eac4dd5\",\"first_name\":\"Robin\",\"last_name\":\"Global Eyet\",\"company_id\":null,\"branch_id\":null,\"email\":\"admin@admin.com\",\"avatar_type\":\"gravatar\",\"avatar_location\":null,\"password\":\"$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG\",\"password_changed_at\":\"2021-05-11 11:12:40\",\"active\":1,\"confirmation_code\":\"2f2838ed0a8fec077451cd10c3eab9d5\",\"confirmed\":1,\"timezone\":\"America\\/New_York\",\"last_login_at\":\"2021-08-02 13:08:24\",\"last_login_ip\":\"::1\",\"to_be_logged_out\":0,\"status\":1,\"created_by\":1,\"updated_by\":null,\"is_term_accept\":0,\"remember_token\":\"eBrQI7i7tx7YxBdSGCzAnozypbanUZjiwQ9D7y6SEFqanAt3pPDtfWrxeKzI\",\"created_at\":\"2021-04-05 09:59:48\",\"updated_at\":\"2021-08-02 13:08:25\",\"deleted_at\":null}', '[\"last_login_at\",\"updated_at\"]', '[]', '[]', 'http://localhost/account_erp/public/login', '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36', '9edb5b756d785d7f6c78b54da971db4637e4244173dad250060e5081c674cb4e5cae39f15a2c594de2be703e3efaca1611804cef4933685ef49e2427456f95d8', '2021-08-02 07:38:26', '2021-08-02 07:38:26');
 
 -- --------------------------------------------------------
 
@@ -1467,12 +1644,52 @@ CREATE TABLE `salary` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `salarymonthly_allowances`
+--
+
+CREATE TABLE `salarymonthly_allowances` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `salary_id` int(13) DEFAULT NULL,
+  `allowance_id` int(11) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salarymonthly_deductions`
+--
+
+CREATE TABLE `salarymonthly_deductions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `salary_id` int(13) DEFAULT NULL,
+  `employee_id` int(13) DEFAULT NULL,
+  `deduction_id` int(11) DEFAULT NULL,
+  `amount` decimal(10,2) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `salary_allowances`
 --
 
 CREATE TABLE `salary_allowances` (
   `id` int(10) UNSIGNED NOT NULL,
   `salary_id` int(13) DEFAULT NULL,
+  `employee_id` int(11) DEFAULT NULL,
   `allowance_id` int(11) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
@@ -1492,8 +1709,36 @@ CREATE TABLE `salary_allowances` (
 CREATE TABLE `salary_deductions` (
   `id` int(10) UNSIGNED NOT NULL,
   `salary_id` int(13) DEFAULT NULL,
+  `employee_id` int(13) DEFAULT NULL,
   `deduction_id` int(11) DEFAULT NULL,
   `amount` decimal(10,2) DEFAULT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT 1,
+  `created_by` int(10) UNSIGNED NOT NULL,
+  `updated_by` int(10) UNSIGNED DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `salary_monthly`
+--
+
+CREATE TABLE `salary_monthly` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `month` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `year` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `salary_date` date DEFAULT NULL,
+  `employee_id` int(13) DEFAULT NULL,
+  `basic_salary` decimal(10,2) DEFAULT NULL,
+  `total_allowance` decimal(10,2) DEFAULT NULL,
+  `total_deduction` decimal(10,2) DEFAULT NULL,
+  `no_of_leave` int(10) DEFAULT NULL,
+  `no_lop` int(10) DEFAULT NULL,
+  `lop_amount` decimal(10,2) DEFAULT NULL,
+  `net_salary` decimal(10,2) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_by` int(10) UNSIGNED NOT NULL,
   `updated_by` int(10) UNSIGNED DEFAULT NULL,
@@ -1766,7 +2011,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `uuid`, `first_name`, `last_name`, `company_id`, `branch_id`, `email`, `avatar_type`, `avatar_location`, `password`, `password_changed_at`, `active`, `confirmation_code`, `confirmed`, `timezone`, `last_login_at`, `last_login_ip`, `to_be_logged_out`, `status`, `created_by`, `updated_by`, `is_term_accept`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '5418d7a1-b5c7-4298-8eaf-38b95eac4dd5', 'Robin', 'Global Eyet', NULL, NULL, 'admin@admin.com', 'gravatar', NULL, '$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG', '2021-05-11 05:42:40', 1, '2f2838ed0a8fec077451cd10c3eab9d5', 1, 'America/New_York', '2021-05-23 11:03:57', '::1', 0, 1, 1, NULL, 0, 'paVOSwC9IsLw66Q6wrrbPPTqONYqfbCgwGBF0y7qtxrLPUoZTAxjbCmU52ua', '2021-04-05 04:29:48', '2021-05-23 11:03:59', NULL),
+(1, '5418d7a1-b5c7-4298-8eaf-38b95eac4dd5', 'Robin', 'Global Eyet', NULL, NULL, 'admin@admin.com', 'gravatar', NULL, '$2y$10$M4sWzL4YV0OJWt5EX0rOWO15X97B6SpAsLFhp1QZ1MCQ9jl8jYVZG', '2021-05-11 05:42:40', 1, '2f2838ed0a8fec077451cd10c3eab9d5', 1, 'America/New_York', '2021-08-02 07:38:24', '::1', 0, 1, 1, NULL, 0, 'eBrQI7i7tx7YxBdSGCzAnozypbanUZjiwQ9D7y6SEFqanAt3pPDtfWrxeKzI', '2021-04-05 04:29:48', '2021-08-02 07:38:25', NULL),
 (2, '5409af86-f72a-472c-b2d2-28234331ae34', 'Justin', 'Bevan', NULL, NULL, 'executive@executive.com', 'gravatar', NULL, '$2y$10$IzifDwXBLkbvSx/byb7TQ.q0.S/BCxUGVXfOhs3dGrBfxkIc80Ht6', NULL, 1, 'bf7e3b1f746cad5d90b9ff422876e0b8', 1, NULL, NULL, NULL, 0, 1, 1, NULL, 0, NULL, '2021-04-05 04:29:48', '2021-04-05 04:29:48', NULL),
 (3, '29acfe1e-5bf1-4b3d-8c76-c6b692d6e320', 'User', 'Test', NULL, NULL, 'user@user.com', 'gravatar', NULL, '$2y$10$QR0/4JVyn4S0x2MXjLFK9OXinTDUabz2JsxC3wQbGJpgaMiPm5Ovm', NULL, 1, '1fd66e4f2930be46889d4ed1b0048fe1', 1, NULL, NULL, NULL, 0, 1, 1, NULL, 0, NULL, '2021-04-05 04:29:48', '2021-04-05 04:29:48', NULL),
 (4, '25930a75-3e1c-4513-8487-48982ac31d62', 'Ceasar', 'Kuhic', NULL, NULL, 'braden74@example.org', 'gravatar', NULL, '$2y$10$cSbNu/AAiGe6veG2zgkCi.fgy8GYdCpj7pnNZWBu5EQXSrjmJvsOa', NULL, 1, '0e6dd188dd7006a20806dbd846223584', 1, NULL, NULL, NULL, 0, 1, NULL, NULL, 0, 'DvMWrbQFdR', '2021-04-05 04:29:56', '2021-04-28 03:07:53', '2021-04-28 03:07:53'),
@@ -1778,6 +2023,24 @@ INSERT INTO `users` (`id`, `uuid`, `first_name`, `last_name`, `company_id`, `bra
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `accounttypes`
+--
+ALTER TABLE `accounttypes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `account_categories`
+--
+ALTER TABLE `account_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `account_subcategories`
+--
+ALTER TABLE `account_subcategories`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `allowances`
@@ -1880,6 +2143,18 @@ ALTER TABLE `employees`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `expensecategories`
+--
+ALTER TABLE `expensecategories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `expenses`
+--
+ALTER TABLE `expenses`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1897,6 +2172,12 @@ ALTER TABLE `faqs`
 ALTER TABLE `jobs`
   ADD PRIMARY KEY (`id`),
   ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `journels`
+--
+ALTER TABLE `journels`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `ledgers`
@@ -2052,6 +2333,18 @@ ALTER TABLE `salary`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `salarymonthly_allowances`
+--
+ALTER TABLE `salarymonthly_allowances`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salarymonthly_deductions`
+--
+ALTER TABLE `salarymonthly_deductions`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `salary_allowances`
 --
 ALTER TABLE `salary_allowances`
@@ -2061,6 +2354,12 @@ ALTER TABLE `salary_allowances`
 -- Indexes for table `salary_deductions`
 --
 ALTER TABLE `salary_deductions`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `salary_monthly`
+--
+ALTER TABLE `salary_monthly`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -2122,6 +2421,24 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `accounttypes`
+--
+ALTER TABLE `accounttypes`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `account_categories`
+--
+ALTER TABLE `account_categories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `account_subcategories`
+--
+ALTER TABLE `account_subcategories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `allowances`
@@ -2214,6 +2531,18 @@ ALTER TABLE `employees`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `expensecategories`
+--
+ALTER TABLE `expensecategories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+ALTER TABLE `expenses`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -2232,10 +2561,16 @@ ALTER TABLE `jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `journels`
+--
+ALTER TABLE `journels`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `ledgers`
 --
 ALTER TABLE `ledgers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=131;
 
 --
 -- AUTO_INCREMENT for table `loanemis`
@@ -2346,6 +2681,18 @@ ALTER TABLE `salary`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `salarymonthly_allowances`
+--
+ALTER TABLE `salarymonthly_allowances`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `salarymonthly_deductions`
+--
+ALTER TABLE `salarymonthly_deductions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `salary_allowances`
 --
 ALTER TABLE `salary_allowances`
@@ -2355,6 +2702,12 @@ ALTER TABLE `salary_allowances`
 -- AUTO_INCREMENT for table `salary_deductions`
 --
 ALTER TABLE `salary_deductions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `salary_monthly`
+--
+ALTER TABLE `salary_monthly`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --

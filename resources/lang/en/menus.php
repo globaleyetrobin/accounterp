@@ -15,6 +15,8 @@ return [
     'backend' => [
         'access' => [
             'title' => 'HR Management',
+			
+			 'account' => 'Account Mgt',
 
             'roles' => [
                 'all' => 'All Roles',
@@ -161,6 +163,74 @@ return [
                 'main' => 'Branches',
                 'view' => 'View Branches',
             ],
+			
+			 'accounttypes' => [
+                'all' => 'All Account Types',
+                'active' => 'Active Account Types',
+                'create' => 'Create Account Types',
+                'deactivated' => 'Deactivated Account Types',
+                'deleted' => 'Deleted Account Types',
+                'edit' => 'Edit Account Type',
+                'main' => 'Account Types',
+                'view' => 'View Account Type',
+            ],
+            'accountcategories' => [
+                'all' => 'All Account Categories',
+                'active' => 'Active Account Categories',
+                'create' => 'Create Account Category',
+                'deactivated' => 'Deactivated Account Categories',
+                'deleted' => 'Deleted Account Categories',
+                'edit' => 'Edit Account Category',
+                'main' => 'Account Categories',
+                'view' => 'View Account Category',
+            ],
+
+             'accountsubcategories' => [
+                'all' => 'All Account Subcategories',
+                'active' => 'Active Account Subcategories',
+                'create' => 'Create Account Subcategory',
+                'deactivated' => 'Deactivated Account Subcategories',
+                'deleted' => 'Deleted Account Subcategories',
+                'edit' => 'Edit Account Subcategory',
+                'main' => 'Account Subcategories',
+                'view' => 'View Account Subcategory',
+            ],
+
+
+            'expensecategories' => [
+                'all' => 'All Expense Categories',
+                'active' => 'Active Expense Categories',
+                'create' => 'Create Expense Category',
+                'deactivated' => 'Deactivated Expense Categories',
+                'deleted' => 'Deleted Expense Categories',
+                'edit' => 'Edit Expense Category',
+                'main' => 'Expense Categories',
+                'view' => 'View Expense Category',
+            ],
+
+             'expenses' => [
+                'all' => 'All Expense',
+                'active' => 'Active Expense',
+                'create' => 'Create Expense',
+                'deactivated' => 'Deactivated Expense',
+                'deleted' => 'Deleted Expense ',
+                'edit' => 'Edit Expense',
+                'main' => 'Expense ',
+                'view' => 'View Expense',
+            ],
+			
+			'journels' => [
+                'all' => 'All Journal',
+                'active' => 'Active Journal',
+                'create' => 'Create Journal',
+                'deactivated' => 'Deactivated Journal',
+                'deleted' => 'Deleted Journal ',
+                'edit' => 'Edit Journal',
+                'main' => 'Journal ',
+                'view' => 'View Journal',
+            ],
+            
+            
 			
 			'categories' => [
                 'all' => 'All Categories',
@@ -372,6 +442,9 @@ return [
 			
 			'subcategories' => 'Sub Categories',
 			
+			
+			'accountcategories' => 'Account Categories',
+			
 			'units' => 'Units',
 			'brands' => 'Brands',
 			'products' => 'Products',
@@ -391,6 +464,8 @@ return [
 			'allowance' => 'Allowances',
 
             'deduction' => 'Deductions',  
+			
+			'accounttype' => 'Account Types',  
 
             'loan' => 'Loans', 
 

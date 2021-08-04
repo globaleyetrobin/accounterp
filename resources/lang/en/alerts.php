@@ -79,6 +79,36 @@ return [
         ],
 		
 		
+		 'accountcategory' => [
+            'created' => 'The Account category was successfully created.',
+            'updated' => 'The Account category was successfully updated.',
+            'deleted' => 'The Account category was successfully deleted.',
+        ],
+
+        'accountcategory' => [
+            'created' => 'The Account subcategory was successfully created.',
+            'updated' => 'The Account subcategory was successfully updated.',
+            'deleted' => 'The Account subcategory was successfully deleted.',
+        ],
+
+           'journel' => [
+            'created' => 'The Account journel was successfully created.',
+            'updated' => 'The Account journel was successfully updated.',
+            'deleted' => 'The Account journel was successfully deleted.',
+        ],
+
+         'expensecategory' => [
+            'created' => 'The Expense category was successfully created.',
+            'updated' => 'The Expense category was successfully updated.',
+            'deleted' => 'The Expense category was successfully deleted.',
+        ],
+
+        'expenses' => [
+            'created' => 'The Expense  was successfully created.',
+            'updated' => 'The Expense  was successfully updated.',
+            'deleted' => 'The Expense  was successfully deleted.',
+        ],
+		
 		 'subcategory' => [
             'created' => 'The Subcategory was successfully created.',
             'updated' => 'The Subcategory was successfully updated.',
@@ -163,6 +193,13 @@ return [
             'updated' => 'The Sales return was successfully updated.',
             'deleted' => 'The Sales return was successfully deleted.',
         ], 
+		
+		'accounttypes' => [
+            'created' => 'The Account type was successfully created.',
+            'updated' => 'The Account type was successfully updated.',
+            'deleted' => 'The Account type was successfully deleted.',
+        ], 
+		
     ],
 
     'frontend' => [

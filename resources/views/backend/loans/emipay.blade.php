@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-sm-5">
                 <h4 class="card-title mb-0">
-                   Monthly Salary
+                   Loan EMI 
                 </h4>
             </div>
             <!--col-->
@@ -22,7 +22,7 @@
         <div class="row mt-4">
             <div class="col">
                 <div class="table-responsive">
-                   <!-- <table id="employee_salary" class="table">
+                    <table id="employee_salary" class="table">
                         <thead>
                             <tr>
                                 <th>{{ trans('labels.backend.access.loan.table.name') }} : <?php echo $loans->name?></th>
@@ -76,51 +76,26 @@
                         </thead>
                         <tbody>
 						   </tbody>
-                    </table>-->
+                    </table>
 			   {{ Form::open(['route' => 'admin.loans.emistore', 'class' => 'form-horizontal', 'role' => 'form', 'method' => 'post', 'id' => 'create-permission', 'files' => true]) }}		
 					
 						<div class="col">
             <div class="form-group row">
                 
                 
-                   <div class="col-md-6">
-				<label for="name" class=" from-control-label required">Month</label>
-				
-				<select class="form-control">
-				  <option>May</option>
-				</select>
-				
-                    <!--<input class="form-control" placeholder="Emi " value="<?php echo $loans->emi?>" required="required" name="emi_amount" type="text" id="emi">
+                   <div class="col-md-12">
+				<label for="name" class=" from-control-label required">EMI Amount</label>
+                    <input class="form-control" placeholder="Emi " value="<?php echo $loans->emi?>" required="required" name="emi_amount" type="text" id="emi">
 					
-					<input name="loanid" type="hidden" value="<?php echo $loans->id ?>">-->
+					<input name="loanid" type="hidden" value="<?php echo $loans->id ?>">
                 </div><!--col-->
-				
-				      <div class="col-md-6">
-				<label for="name" class=" from-control-label required">Month</label>
-				
-				<select class="form-control">
-				  <option>2021</option>
-				</select>
-				
-                    <!--<input class="form-control" placeholder="Emi " value="<?php echo $loans->emi?>" required="required" name="emi_amount" type="text" id="emi">
-					
-					<input name="loanid" type="hidden" value="<?php echo $loans->id ?>">-->
-                </div><!--col-->
-				
-				
-				<div class="col-md-6">
-				<p> </p>
-				<input class="btn btn-success btn-sm pull-left" type="submit" value="Create Salary">
-				
-				
-				</div>
 				
 			 </div>
 			 </div>
                
 					
 		  
-			<!--
+			
 			
 			
 				<div class="col">
@@ -131,25 +106,27 @@
 				<label for="name" class=" from-control-label required">EMI Date</label>
                     <input class="form-control" value="<?php echo $emi_date?>"  placeholder="Emi Date" required="required" name="emi_date" type="date" id="emi_date">
 					
-                </div>
+                </div><!--col-->
 				
 				<div class="col-md-12">
 				<label for="name" class=" from-control-label required">Paid Date</label>
                     <input class="form-control"  value="<?php echo date('Y-m-d')?>" placeholder="Paid Date" required="required" name="paid_date" type="date" id="paid_date">
 					
-                </div>
+                </div><!--col-->
 				
 				
 				
 			 </div>
-			 </div> -->
+			 </div>
 			
 			
 				 
 			
 			
-		
-	
+			   <div class="card">
+       
+        @include('backend.components.footer-buttons', [ 'cancelRoute' => 'admin.sales.index' ])
+    </div><!--card-->
     {{ Form::close() }}
 						
 			
